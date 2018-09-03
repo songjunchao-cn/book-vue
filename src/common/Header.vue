@@ -9,7 +9,13 @@
         <div class="item-right nav-item">Aa</div>
         <div class="item-right nav-item">登录</div>
         <div class="nav-search-wrapper">
-          <input type="text"  placeholder="搜索" class="nav-search">
+          <input
+            type="text"
+            placeholder="搜索"
+            v-if="show"
+            :class="[focused ? 'focused' : '']"
+            @focus="handleFocuse"
+            @blur="handleBlur">
           <i class="iconfont search-icon">&#xe617;</i>
         </div>
       </div>
@@ -23,7 +29,21 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  data () {
+    return {
+      focused: false,
+      show: true
+    }
+  },
+  methods: {
+    handleFocuse: function () {
+      this.focused = true
+    },
+    handleBlur: function () {
+      this.focused = false
+    }
+  }
 }
 </script>
 
@@ -70,7 +90,7 @@ export default {
         height 100%
         float left
         background green
-        .nav-search
+        input
           height 38px
           width 158px
           border 1px solid #eee
@@ -83,12 +103,13 @@ export default {
           background #eee
           outline none
           color #777
+        .focused
+          width 250px
         .search-icon
           position absolute
           right 3px
           top 18px
           font-size 20px
-
     .addition
       position absolute
       right 0
