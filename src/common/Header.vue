@@ -9,13 +9,14 @@
         <div class="item-right nav-item">Aa</div>
         <div class="item-right nav-item">登录</div>
         <div class="nav-search-wrapper">
-          <input
-            type="text"
-            placeholder="搜索"
-            v-if="show"
-            :class="[focused ? 'focused' : '']"
-            @focus="handleFocuse"
-            @blur="handleBlur">
+          <transition name="fade">
+            <input
+              type="text"
+              placeholder="搜索"
+              :class="[focused ? 'focused' : '']"
+              @focus="handleFocuse"
+              @blur="handleBlur">
+          </transition>
           <i class="iconfont search-icon">&#xe617;</i>
         </div>
       </div>
@@ -90,6 +91,10 @@ export default {
         height 100%
         float left
         background green
+        .slide-fade-enter-active 
+          transition: all .3s ease-out;
+        .slide-fade-leave-active 
+          transition: all .8s ease-out;
         input
           height 38px
           width 158px
